@@ -2,7 +2,7 @@
   <div id="app">
     <Header/>
     <Utils/>
-    <router-view style="padding: 0 10%;"/>
+    <router-view/>
   </div>
 </template>
 
