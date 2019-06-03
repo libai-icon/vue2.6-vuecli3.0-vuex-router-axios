@@ -7,5 +7,5 @@
  */
 // import baseUrl from '../baseUrl';
 export default {
-    'home':  '/mock/5ce661bdbf456419305cedbe/example/query'
+    'city':  'mock/5ceca386e2954e54d5f8f799/public/cityList'
 };

@@ -2,7 +2,8 @@
   <div class="header">
       <div>
             <i class="el-icon-location" style="font-size:16px;"></i> 上海  
-             [ <span class="loins-header-changeCity">切换城市</span> ]
+            <el-button class="header-changeCity" v-popover:popover>[ <span class="loins-header-changeCity">切换城市</span> ]</el-button>
+             
       </div>
       <div>
          
@@ -15,12 +16,27 @@
           <div class="header-title">设置</div>
           
       </div>
-
+    <el-popover
+        ref="popover"
+        placement="bottom"
+        title="地址"
+        width="100%"
+        trigger="click">
+        <div>
+            <CityPopover/> 
+        </div>
+    </el-popover>
+    <!-- <CityPopover/> -->
   </div>
 </template>
 
 <script>
+import CityPopover from '@/components/public/CityPopover.vue'
+
 export default {
+    'components': {
+        CityPopover
+    },
     'name': 'Header',
     'props': {
         'msg': String
@@ -72,5 +88,7 @@ export default {
             color: #409EFF;
             cursor:pointer;
     }
-   
+   .header-changeCity{
+       border: none;
+   }
 </style>
