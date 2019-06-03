@@ -6,9 +6,9 @@
  * @createTime 2019-05-23
  */
 import home from './home';
-// import user from './user'
+import _public from './public'
 
 export default {
-    home
-//   user
+    home,
+    _public
 };
