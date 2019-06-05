@@ -24,8 +24,12 @@ export default new Router({
         {
             'path': '/goods',
             'name': 'goods',
-            
             'component': () => import('./views/goods/Goods.vue')
+        },
+         {
+            'path': '/goodsDetail',
+            'name': 'goodsDetail',
+            'component': () => import('./views/goods/GoodsDetail.vue')
         }
     ]
 });

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
       <div>
-            <i class="el-icon-location" style="font-size:16px;"></i> 上海  
+            <i class="el-icon-location" style="font-size:16px;"></i> {{$store.state.city.name}}  
             <el-button class="header-changeCity" v-popover:popover>[ <span class="loins-header-changeCity">切换城市</span> ]</el-button>
              
       </div>
@@ -19,9 +19,11 @@
     <el-popover
         ref="popover"
         placement="bottom"
-        title="地址"
+        title="所在区域"
         width="100%"
-        trigger="click">
+        trigger="click"
+        v-model="$store.state.city_state"
+        >
         <div>
             <CityPopover/> 
         </div>
@@ -39,7 +41,7 @@ export default {
     },
     'name': 'Header',
     'props': {
-        'msg': String
+        cityType:false,
     },
     data() {
         return {

@@ -1,16 +1,14 @@
 <template>
-  <div class="cityPopover">
-      <div v-for="item in cityData">
-          {{item.provinceName}}
-      </div>
+  <div class="index">
+     
   </div>
 </template>
 
 <script>
 export default {
-    'name': 'CityPopover',
+    'name': 'Index',
     'props': {
-        // 'msg': String
+
     },
     data() {
         return {
@@ -21,11 +19,12 @@ export default {
        
     },
     mounted(){
-        
+      
     }
 };
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-  
+
 </style>

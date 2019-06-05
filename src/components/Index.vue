@@ -32,7 +32,7 @@
     </div>
 
     <div class="index-search-list" style="margin:20px 0;border-bottom: #d2cfcf 1px solid;">
-        <div><span class="index-tag active">全部</span> <span class="index-tag">新上架</span></div>
+        <div><span class="index-tag active">全部</span> <span class="index-tag">正在拍卖</span>  <span class="index-tag">即将拍卖</span></div>
         <div> <span class="index-tag">默认排序</span> <span class="index-tag">时间排序</span></div>
     </div>
     <div class="index-search-list-left" >
@@ -57,15 +57,12 @@ export default {
     },
     'methods': {
         handleSelect(key,keyPath) {
-        // console.log(key, keyPath);
+          
         }
     },
     mounted(){
-        // this.$store._actions.add_book([1,2,3,4,5,6])
-        this.$store.commit('update_name','libai');
-        this.$store.dispatch('update_name', 'logic');
+        // this.$store.commit('update_name','libai');
         var book = this.$store.state.name;
-        // console.log(book);
     }
 };
 </script>

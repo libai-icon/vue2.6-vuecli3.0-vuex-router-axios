@@ -1,0 +1,12 @@
+body {
+  margin: 0 !important;
+}
+.el-input-group__append {
+  width: 25%  !important;
+  background-color: #fb6345  !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+.header-changeCity {
+  background-color: #f8f8f8 !important;
+}
