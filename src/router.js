@@ -30,6 +30,11 @@ export default new Router({
             'path': '/goodsDetail',
             'name': 'goodsDetail',
             'component': () => import('./views/goods/GoodsDetail.vue')
+        },
+        {
+            'path': '/follow',
+            'name': 'follow',
+            'component': () => import('./views/goods/Follow.vue')
         }
     ]
 });

@@ -11,7 +11,7 @@
       <div>
           <div class="header-title">订单中心</div>
           <div class="header-title">实名认证</div>
-          <div class="header-title">我的收藏</div>
+          <div class="header-title" @click="goToFollow()">我的关注</div>
           <div class="header-title">优惠券</div>
           <div class="header-title">设置</div>
           
@@ -51,6 +51,9 @@ export default {
     'methods': {
         handleSelect(key,keyPath) {
         // console.log(key, keyPath);
+        },
+        goToFollow(){
+            this.$router.push({name:'follow',query:{id:1}})
         }
     }
 };
