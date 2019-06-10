@@ -6,7 +6,6 @@
 <script>
 import Header from '@/components/public/Header.vue';
 import Goods from './goods/Goods.vue';
-// import Index from './index/Index.vue';
 import Utils from '@/components/public/Utils.vue';
 export default {
     'components': {
