@@ -6,34 +6,16 @@
         <el-breadcrumb-item>大众 途安 2013款 1.4T 手动风尚版5座</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="detail-flex">
-        <div style="width:60%;">
-             <el-carousel :interval="5000" arrow="always" @click="onChange">
-                <el-carousel-item v-for="(item,index) in images" :key="index" :class="current == item.id? 'selected':''">
-                    <van-image
-                    lazy-load
-                     fit="contain"
-                    :src="item.url"
-                    :autoplay="false"
-                    />
-                </el-carousel-item>
-            </el-carousel>
-         <div class="goodsDetail-list-img">
-            <van-image
-                    width="100"
-                    height="100"
-                    lazy-load
-                    :src="item.url"
-                    v-for="item in images" :key="item.id"
-                    />
-            </div>
-        </div>
+
+        <DetailCarousel :images="images" style="width: 60%"/>
+
         <div>
             <h2>大众 途安 2013款 1.4T 手动风尚版5座</h2>
-            <van-tag class="detail-tag" color="#f2826a">标签</van-tag>
-            <van-tag class="detail-tag" color="#f2826a" plain>标签</van-tag>
-            <van-tag class="detail-tag" color="#7232dd">标签</van-tag>
-            <van-tag class="detail-tag" color="#7232dd" plain>标签</van-tag>
-            <van-tag class="detail-tag" color="#ffe1e1" text-color="#ad0000">标签</van-tag>
+            <el-tag>标签一</el-tag>
+            <el-tag type="success">标签二</el-tag>
+            <el-tag type="info">标签三</el-tag>
+            <el-tag type="warning">标签四</el-tag>
+            <el-tag type="danger">标签五</el-tag>
             <div class="detail-money">
                 <div style="font-size: 30px;color: #419efb;">起拍：¥2.55万</div>
                 <!-- <div style="color:red;">加价：5000.00/次</div> -->
@@ -62,41 +44,129 @@
            </div>
         </div>
     </div>
-    <img src="../../assets/detail-0001.jpg" alt="">
+
+
+      <div style="border: 1px solid #fcf2d5;background: #fffdf9;height: 138px;margin-top: 20px">
+
+      </div>
+
+      <!---->
+      <div class="module_name">基本信息</div>
+      <el-divider></el-divider>
+      <div style="font-size: 18px;margin-top: 18px">车主：男先生
+          <el-tooltip placement="bottom" effect="light">
+              <div slot="content">咨询电话：<span style="color:#409EFF">400-123-123</span></div>
+              <el-button type="primary" icon="el-icon-phone" size="small">咨询看车</el-button>
+          </el-tooltip>
+          <span class="detail-span_tag" style="margin-left: 3rem">倒车雷达</span>
+      </div>
+
+      <el-row>
+          <el-col :span="8" v-for="iten in 6" style="margin-top: 1rem">
+              <div class="car_title">基本参数</div>
+              <el-table
+                      :data="tableData"
+                      border
+                      :show-header="false"
+                      :stripe="true"
+                      class="car_table">
+                  <el-table-column prop="date">
+                  </el-table-column>
+                  <el-table-column prop="name">
+                  </el-table-column>
+              </el-table>
+          </el-col>
+      </el-row>
+      <div class="car_text">以上基本信息为两次检测后录入，实际情况以看车时为准</div>
+
+      <div class="module_name">车辆图片</div>
+      <el-divider></el-divider>
+
+      <el-row>
+          <div style="text-align: center;line-height: 3rem">车辆外观</div>
+          <el-col  v-for="(item,index) in exteriorList" :span="index < 4 ? 12 : 6" :key="index">
+              <div :class="index < 4 ?'exterior':'exterior1'"><img :src="item.url" style="width: 100%"></div>
+          </el-col>
+          <el-col  :span="6">
+              <div class="exterior1"   style="background: #000" >
+                  <div :style="'opacity:0.7;;height: 184px;background-image: url('+exteriorList[0].url+');background-size: 100%;color: #fff;line-height: 184px;'" @click="viewCar">
+                      查看外观图
+                  </div>
+              </div>
+          </el-col>
+      </el-row>
+
+
+      <el-dialog
+              :visible.sync="dialogVisible"
+              width="30%">
+      </el-dialog>
   </div>
 </template>
 <script>
+import DetailCarousel from '@/components/public/DetailCarousel.vue'
 export default {
     'components': {
-        
+      DetailCarousel
     },
     data() {
         return {
            current:0,
            images:[
-               {id:1,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:2,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:3,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:4,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:5,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:6,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:7,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:8,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:9,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
-               {id:10,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:1,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:2,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:3,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:4,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:5,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:6,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:7,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:8,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:9,url:'https://img.yzcdn.cn/vant/cat.jpeg'},
+             {id:10,url:'https://img.yzcdn.cn/vant/cat.jpeg'}
            ],
-           num: 1
+           num: 1,
+           tableData: [
+             {
+               date: '排量(L)',
+               name: '1.6'
+           },{
+               date: '排量(L)',
+               name: '1.6'
+           },{
+               date: '排量(L)',
+               name: '1.6'
+           },{
+               date: '排量(L)',
+               name: '1.6'
+           },{
+               date: '排量(L)',
+               name: '1.6'
+           },{
+               date: '排量(L)',
+               name: '1.6'
+           }
+           ],
+           exteriorList:[
+             {id:1,url:'https://image.guazistatic.com/gz01190610/16/28/1dfc88c8db55c462f46d26d51d3510aa.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88'},
+             {id:2,url:'https://image.guazistatic.com/gz01190610/16/28/19505167cfa886b97cf60f5cbd0f56ec.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88'},
+             {id:3,url:'https://image.guazistatic.com/gz01190610/16/28/2ba63f23555183474686297dfcc479c1.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88'},
+             {id:4,url:'https://image.guazistatic.com/gz01190610/16/28/275d6675f9e6618f5db3d0815755e406.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88'},
+             {id:5,url:'https://image.guazistatic.com/gz01190610/16/28/99f5f7d08ffeda1ebed916d0fdaa6c77.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88'},
+             {id:6,url:'https://image.guazistatic.com/gz01190610/16/28/14800bdaadb0d22aa9ec35291cf9d28b.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88'},
+             {id:7,url:'https://image.guazistatic.com/gz01190610/16/28/2ee2db1479fb6d7058ccc58144992f7d.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88'}
+           ],
+           dialogVisible:false
         }
     },
     'name':'goodsDetail',
     
     'methods':{
-        onChange(index) {
-            this.current = index;
-        },
          handleChange(value) {
             console.log(value);
-        }
+         },
+         viewCar(){
+            this.dialogVisible = true
+         }
     },
     mounted(){
              
@@ -119,11 +189,6 @@ export default {
         font-size: 12px;
         color: #fff;
         background: rgba(0, 0, 0, 0.1);
-    }
-    .goodsDetail-list-img{
-        overflow-x: scroll;
-        text-align: left;     
-        white-space : nowrap;    
     }
     ::-webkit-scrollbar
         {
@@ -158,6 +223,57 @@ export default {
             margin-bottom: 20px;
             padding: 25.5px 27px 10.5px 25px;
             border: 1px solid #fcf2d5;
+    }
+    .detail-span_tag{
+        padding: 0 14px 0 13px;
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        font-size: 14px;
+        -webkit-border-radius: 15px;
+        border-radius: 15px;
+        color: #7a838d;
+        background-color: #f6f6f6;
+        margin-right: 16px;
+        margin-bottom: 10px;
+    }
+    .car_title{
+        background-color: #f5f5f5;
+        font-size: 16px;
+        font-weight: 200;
+        width: 98%;
+        height: 38px;
+        line-height: 38px;
+        text-align: center;
+    }
+    .car_text{
+        text-align: center;
+        display: block;
+        height: 53px;
+        line-height: 53px;
+        color: #a5abb2;
+        width: 100%;
+        float: left;
+        font-size: 12px;
+    }
+    .car_table{
+        width: 98%;
+    }
+    .car_table .cell{
+        color: #495056;
+        text-align: center;
+        font-size: 12px;
+    }
+    .module_name{
+        font-size: 20px;margin-top: 20px
+    }
+    .exterior{
+        width: 98%;
+        text-align: center
+    }
+    .exterior1{
+        width: 96%;text-align: center
     }
 </style>
 
