@@ -2,10 +2,10 @@
   <div class="detailCarousel">
       <div>
           <el-carousel
-                  :interval="5000"
                   ref="current"
                   :autoplay="false"
                   arrow="always"
+                  :height="height"
                   @change="onChange">
               <el-carousel-item
                       v-for="(item,index) in images"
@@ -14,23 +14,34 @@
                       :name="index.toStrong">
                       <van-image
                               lazy-load
+                              width="100%"
                               fit="contain"
                               :src="item.url"
-                      />
-                  <!--height="300px"-->
+                              @click="viewCar"/>
               </el-carousel-item>
           </el-carousel>
-          <div class="imgnumber">{{index+1}}/{{images.length}}</div>
-          <div class="goodsDetail-list-img">
-              <van-image
-                      :class="index == e ? 'isSelect' : 'noSelect'"
-                      class="imgmargin"
-                      lazy-load
-                      :src="item.url"
-                      v-for="(item,e) in images"
-                      :key="item.id"
-                      @click="onChange(e)"/>
-          </div>
+          <div class="imgnumber"><span>{{index+1}}</span>/{{images.length}}</div>
+
+          <el-carousel
+                  ref="currents"
+                  :autoplay="false"
+                  arrow="always"
+                  height="120px">
+              <el-carousel-item
+                      v-for="(iitem,ie) in Math.ceil(images.length/5)"
+                      :key="ie"
+                      :name="ie.toStrong">
+                  <van-image
+                  v-for="(item,e) in images"
+                  v-if="(e)<(ie+1)*5 && (e+1)>(ie)*5"
+                  :class="index == e ? 'isSelect' : 'noSelect'"
+                  class="imgmargin"
+                  lazy-load
+                  :src="item.url"
+                  :key="item.id"
+                  @click="onChange(e)"/>
+              </el-carousel-item>
+          </el-carousel>
       </div>
   </div>
 </template>
@@ -39,22 +50,32 @@
 export default {
     'name': 'DetailCarousel',
     'props': {
-        'images': Array
+        'images': Array,
+        'height':''
     },
     data() {
         return {
           current:0,
-          index:0
+          currents:0,
+          index:0,
+          dialogVisible:false
         };
     },
     'methods': {
       onChange(index) {
         this.index = index;
         this.$refs.current.setActiveItem(index);
+        this.$refs.currents.setActiveItem((Math.ceil((index+1)/5)-1));
+      },
+      viewCar(){
+        this.dialogVisible = true
+      },
+      closeView(){
+        this.dialogVisible = false
       }
     },
     mounted(){
-        
+
     }
 };
 </script>
@@ -69,11 +90,11 @@ export default {
     }
 
     .el-carousel__item:nth-child(2n) {
-        background-color: #99a9bf;
+        /*background-color: #99a9bf;*/
     }
 
     .el-carousel__item:nth-child(2n+1) {
-        background-color: #d3dce6;
+        /*background-color: #d3dce6;*/
     }
     .goodsDetail-list-img{
        overflow-x: scroll;
@@ -85,21 +106,47 @@ export default {
     }
     .imgnumber{
         position: absolute;
-        left: 93%;
-        top: 270px;
+        left: 90%;
+        top: 360px;
         z-index: 100;
         color: #fff;
     }
+    .imgnumber span{
+        font-size: 25px;
+    }
+    .selected{
+        /*border: 1px solid #d2cfcf;*/
+        /*box-shadow : 0 0 10px #dedcdc;*/
+    }
     .imgmargin{
-        margin: 1rem 1rem 0 0;
+        width: 20%;
+        margin-top: 1rem;
     }
     .isSelect{
-        width: 136px;
+        width: 19%;
         height: 96px;
         border: 2px solid #409EFF;
     }
     .noSelect{
-        width: 140px;
+        width: 20%;
         height: 100px;
+    }
+    .detailCarousel /deep/.el-carousel__arrow {
+        border: none;
+        outline: 0;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        -webkit-transition: .3s;
+        transition: .3s;
+        border-radius: 50%;
+        background-color: rgba(37, 44, 51, 0.62);
+        color: #FFF;
+        position: absolute;
+        top: 50%;
+        z-index: 10;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        text-align: center;
     }
 </style>
