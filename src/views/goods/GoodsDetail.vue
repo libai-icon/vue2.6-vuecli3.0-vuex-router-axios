@@ -62,7 +62,7 @@
       </div>
 
       <el-row>
-          <el-col :span="8" v-for="iten in 6" style="margin-top: 1rem">
+          <el-col :span="8" v-for="item in 6" :key="item" style="margin-top: 1rem">
               <div class="car_title">基本参数</div>
               <el-table
                       :data="tableData"

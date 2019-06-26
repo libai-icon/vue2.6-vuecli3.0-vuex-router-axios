@@ -36,7 +36,7 @@
         <div> <span class="index-tag">默认排序</span> <span class="index-tag">时间排序</span></div>
     </div>
     <div class="index-search-list-left" >
-        <div class="index-goods" v-for="item in 10">
+        <div class="index-goods" v-for="item in 10" :key="item">
           <div class="bg">{{item}}</div>
         </div>
         

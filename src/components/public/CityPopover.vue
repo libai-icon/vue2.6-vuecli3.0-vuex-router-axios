@@ -1,8 +1,8 @@
 <template>
   <div class="cityPopover" >
-      <div v-for="item in cityData">
+      <div v-for="item in cityData" :key="item.id">
           <span style="color:#409EFF"> {{item.initial}}:</span>
-          <span v-for="i in item.list" class="cityPopover-city" @click="changeCity(i)" :class="i.code == checked ? 'selected '+i.code:i.code" >
+          <span v-for="i in item.list" class="cityPopover-city" @click="changeCity(i)" :key="i.id" :class="i.code == checked ? 'selected '+i.code:i.code" >
               {{i.name}}
           </span>
           <!-- {{item.provinceName}} -->
