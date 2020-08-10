@@ -2,27 +2,27 @@
 
 ## Project setup
 ```
-yarn install
+yarn install   (npm install)
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn  serve (npm run serve)
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
+yarn  build (npm run build)
 ```
 
 ### Run your tests
 ```
-yarn run test
+yarn  test (npm run test)
 ```
 
 ### Lints and fixes files
 ```
-yarn run lint
+yarn lint (npm run lint)
 ```
 
 ### 启动任务管理器
